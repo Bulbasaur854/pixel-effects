@@ -1,0 +1,25 @@
+:root {
+    --clr-bcg: #2c3930;
+    --clr-txt: #dcd7c9;
+    --clr-prm: #a27b5c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--clr-bcg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#effects-canvas {
+    width: 32rem;
+    height: 32rem;
+    background-color: var(--clr-prm);
+}
