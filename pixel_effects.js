@@ -7,7 +7,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = 512;
 canvas.height = 512;
 const image = new Image();
-image.src = "./Bulbasaur.png";
+image.src = "./bulbasaur.png";
 let particles_array = [];
 
 image.addEventListener("load", () => {
@@ -44,7 +44,7 @@ function create_particles() {
 function animate_particles() {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     ctx.globalAlpha = 0.05;
-    ctx.fillStyle = "#a27b5c";
+    ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particles_array.length; i++) {
         particles_array[i].update();
