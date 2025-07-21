@@ -1,28 +1,28 @@
 // This project is based on the guide of 'freeCodeCamp.org' YouTube channel
 // https://www.youtube.com/watch?v=UoTxOVEecbI&list=WL&index=1&t=2600s&ab_channel=freeCodeCamp.org
-
 import { Particle } from "./particle.js";
 
 const NUM_OF_PARTICLES = 5000;
+const CANVAS_WIDTH = 512;
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d");
-canvas.width = 512;
-canvas.height = 512;
 const image = new Image();
-image.src = "./bulbasaur.png";
-let particles_array = [];
 
+let particles = [];
+let canvas_grid = [];
+
+image.src = "./bulbasaur.png";
 image.addEventListener("load", () => {
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = CANVAS_WIDTH;
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-    to_gray_scale(scanned_image);
-    create_particles();
-    animate_particles();
+    image_to_gray_scale(scanned_image);
+    image_particles_overlay(scanned_image);
 });
 
-function to_gray_scale(scanned_image) {
+function image_to_gray_scale(scanned_image) {
     const scanned_data = scanned_image.data;
 
     for (let i = 0; i < scanned_data.length; i += 4) {
@@ -37,9 +37,22 @@ function to_gray_scale(scanned_image) {
     ctx.putImageData(gray_image, 0, 0);
 }
 
+function image_particles_overlay(scanned_image) {
+    create_particles();
+    animate_particles();
+
+    // map the scanned image data to an array of cells,
+    // each cell holds its brightness and can be accessed by
+    // using its x and y position as indexes
+    for (let y = 0; y < canvas.height; y++) {
+        let row = [];
+        for (let x = 0; x < canvas.width; x++) {}
+    }
+}
+
 function create_particles() {
     for (let i = 0; i < NUM_OF_PARTICLES; i++) {
-        particles_array.push(new Particle(canvas, ctx));
+        particles.push(new Particle(canvas, ctx));
     }
 }
 
@@ -48,9 +61,9 @@ function animate_particles() {
     ctx.globalAlpha = 0.05;
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < particles_array.length; i++) {
-        particles_array[i].update();
-        particles_array[i].draw();
+    for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
     }
     requestAnimationFrame(animate_particles);
 }
