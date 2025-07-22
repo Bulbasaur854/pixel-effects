@@ -12,13 +12,15 @@ const image = new Image();
 let particles = [];
 let canvas_grid = [];
 
-image.src = "./bulbasaur.png";
+image.src = "./united.png";
 image.addEventListener("load", () => {
-    canvas.width = CANVAS_WIDTH;
-    canvas.height = CANVAS_WIDTH;
+    canvas.width = canvas.height = CANVAS_WIDTH;
+
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    image_to_gray_scale(scanned_image);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // image_to_gray_scale(scanned_image);
     image_particles_overlay(scanned_image);
 });
 
@@ -46,7 +48,15 @@ function image_particles_overlay(scanned_image) {
     // using its x and y position as indexes
     for (let y = 0; y < canvas.height; y++) {
         let row = [];
-        for (let x = 0; x < canvas.width; x++) {}
+        for (let x = 0; x < canvas.width; x++) {
+            const red = scanned_image.data[y * 4 * scanned_image.width + x * 4];
+            const green = scanned_image.data[y * 4 * scanned_image.width + x * 4 + 1];
+            const blue = scanned_image.data[y * 4 * scanned_image.width + x * 4 + 2];
+            const brightness = get_relative_brightness(red, green, blue);
+            const cell = [brightness];
+            row.push(cell);
+        }
+        canvas_grid.push(row);
     }
 }
 
@@ -57,13 +67,18 @@ function create_particles() {
 }
 
 function animate_particles() {
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     ctx.globalAlpha = 0.05;
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 0.2;
     for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
+        particles[i].update(canvas_grid);
+        ctx.globalAlpha = particles[i].speed;
         particles[i].draw();
     }
     requestAnimationFrame(animate_particles);
+}
+
+function get_relative_brightness(red, green, blue) {
+    return Math.sqrt(red * red * 0.299 + green * green * 0.587 + blue * blue * 0.114) / 100;
 }
