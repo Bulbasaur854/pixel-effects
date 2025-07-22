@@ -1,5 +1,7 @@
 // This project is based on the guide of 'freeCodeCamp.org' YouTube channel
 // https://www.youtube.com/watch?v=UoTxOVEecbI&list=WL&index=1&t=2600s&ab_channel=freeCodeCamp.org
+//
+// PNG images are taken from - https://www.stickpng.com/
 import { Particle } from "./particle.js";
 import * as ImagesB64 from "./images_b64.js";
 
