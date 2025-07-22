@@ -12,7 +12,7 @@ const image = new Image();
 let particles = [];
 let canvas_grid = [];
 
-image.src = ImagesB64.controller;
+image.src = ImagesB64.sunflower;
 
 image.addEventListener("load", () => {
     canvas.width = image.width;

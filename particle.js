@@ -3,7 +3,7 @@ export class Particle {
         this.canvas = canvas;
         this.ctx = ctx;
         this.x = Math.random() * this.canvas.width;
-        this.y = Math.random() * this.canvas.height;
+        this.y = 0;
         this.abs_x = Math.floor(this.x);
         this.abs_y = Math.floor(this.y);
         this.speed = 0;
