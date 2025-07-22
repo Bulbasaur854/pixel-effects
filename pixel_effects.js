@@ -4,7 +4,7 @@ import { Particle } from "./particle.js";
 import * as ImagesB64 from "./images_b64.js";
 
 const NUM_OF_PARTICLES = 5000;
-const GLOBAL_ALPHA_TWEAK = 1;
+const GLOBAL_ALPHA_TWEAK = 0.1;
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d");
@@ -23,8 +23,10 @@ image.addEventListener("load", () => {
     const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // image_to_gray_scale(scanned_image);
-    image_particles_overlay(scanned_image);
+    image_to_gray_scale(scanned_image);
+    setTimeout(() => {
+        image_particles_overlay(scanned_image);
+    }, 1000);
 });
 
 function image_to_gray_scale(scanned_image) {
