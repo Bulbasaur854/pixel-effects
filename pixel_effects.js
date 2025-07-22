@@ -4,6 +4,7 @@ import { Particle } from "./particle.js";
 import * as ImagesB64 from "./images_b64.js";
 
 const NUM_OF_PARTICLES = 5000;
+const GLOBAL_ALPHA_TWEAK = 1;
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d");
@@ -77,7 +78,7 @@ function animate_particles() {
     ctx.globalAlpha = 0.2;
     for (let i = 0; i < particles.length; i++) {
         particles[i].update(canvas_grid);
-        ctx.globalAlpha = particles[i].speed * 0.2;
+        ctx.globalAlpha = particles[i].speed * GLOBAL_ALPHA_TWEAK;
         particles[i].draw();
     }
     requestAnimationFrame(animate_particles);
