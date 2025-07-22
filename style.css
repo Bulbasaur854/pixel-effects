@@ -19,7 +19,7 @@ body {
 }
 
 #effects-canvas {
-    width: 32rem;
-    height: 32rem;
+    /* width: 32rem;
+    height: 32rem; */
     background-color: #000000;
 }

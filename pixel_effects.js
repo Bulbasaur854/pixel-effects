@@ -3,7 +3,6 @@
 import { Particle } from "./particle.js";
 
 const NUM_OF_PARTICLES = 5000;
-const CANVAS_WIDTH = 512;
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d");
@@ -12,9 +11,10 @@ const image = new Image();
 let particles = [];
 let canvas_grid = [];
 
-image.src = "./united.png";
+image.src = "./image.png";
 image.addEventListener("load", () => {
-    canvas.width = canvas.height = CANVAS_WIDTH;
+    canvas.width = image.width;
+    canvas.height = image.height;
 
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -73,7 +73,7 @@ function animate_particles() {
     ctx.globalAlpha = 0.2;
     for (let i = 0; i < particles.length; i++) {
         particles[i].update(canvas_grid);
-        ctx.globalAlpha = particles[i].speed;
+        ctx.globalAlpha = particles[i].speed * 0.25;
         particles[i].draw();
     }
     requestAnimationFrame(animate_particles);
