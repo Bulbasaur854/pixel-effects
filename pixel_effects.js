@@ -5,8 +5,8 @@
 import { Particle } from "./particle.js";
 import * as ImagesB64 from "./images_b64.js";
 
-const NUM_OF_PARTICLES = 5000;
-const GLOBAL_ALPHA_TWEAK = 0.1;
+const NUM_OF_PARTICLES = 8000;
+const GLOBAL_ALPHA_TWEAK = 0.5;
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d");
@@ -15,7 +15,7 @@ const image = new Image();
 let particles = [];
 let canvas_grid = [];
 
-image.src = ImagesB64.sunflower;
+image.src = ImagesB64.saitama;
 
 image.addEventListener("load", () => {
     canvas.width = image.width;
@@ -25,10 +25,11 @@ image.addEventListener("load", () => {
     const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    image_to_gray_scale(scanned_image);
-    setTimeout(() => {
-        image_particles_overlay(scanned_image);
-    }, 1000);
+    // image_to_gray_scale(scanned_image);
+    image_particles_overlay(scanned_image);
+    // setTimeout(() => {
+    //     image_particles_overlay(scanned_image);
+    // }, 10000)
 });
 
 function image_to_gray_scale(scanned_image) {
@@ -61,7 +62,8 @@ function image_particles_overlay(scanned_image) {
             const blue =
                 scanned_image.data[y * 4 * scanned_image.width + x * 4 + 2];
             const brightness = get_relative_brightness(red, green, blue);
-            const cell = [brightness];
+            const rgb = `rgb(${red}, ${green}, ${blue})`;
+            const cell = [brightness, rgb];
             row.push(cell);
         }
         canvas_grid.push(row);
@@ -83,7 +85,7 @@ function animate_particles() {
     for (let i = 0; i < particles.length; i++) {
         particles[i].update(canvas_grid);
         ctx.globalAlpha = particles[i].speed * GLOBAL_ALPHA_TWEAK;
-        particles[i].draw();
+        particles[i].draw(canvas_grid);
     }
     requestAnimationFrame(animate_particles);
 }

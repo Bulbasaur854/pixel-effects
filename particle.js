@@ -16,10 +16,9 @@ export class Particle {
         this.abs_y = Math.floor(this.y);
         if (canvas_grid[this.abs_y]) {
             if (canvas_grid[this.abs_y][this.abs_x]) {
-                this.speed = canvas_grid[this.abs_y][this.abs_x][0];
+                this.speed = canvas_grid[this.abs_y][this.abs_x][0]; // brightness value of the pixel
             }
         }
-
         // brightness is represented by number between 0 and ~2.5
         // want bright pixels to move slow, and dark ones to move fast
         // we substract speed from 2.5 plus velocity for randomness
@@ -29,9 +28,9 @@ export class Particle {
         this.check_y_pos();
     }
 
-    draw() {
+    draw(canvas_grid) {
         this.ctx.beginPath();
-        this.ctx.fillStyle = "#dcd7c9";
+        this.ctx.fillStyle = canvas_grid[this.abs_y][this.abs_x][1]; // rgb value of the pixel
         this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         this.ctx.fill();
     }
