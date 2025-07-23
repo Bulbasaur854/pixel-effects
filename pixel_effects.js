@@ -81,7 +81,6 @@ function animate_particles() {
     ctx.globalAlpha = 0.05;
     ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.globalAlpha = 0.2;
     for (let i = 0; i < particles.length; i++) {
         particles[i].update(canvas_grid);
         ctx.globalAlpha = particles[i].speed * GLOBAL_ALPHA_TWEAK;
