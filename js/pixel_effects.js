@@ -5,9 +5,9 @@
 import { Particle } from "./particle.js";
 import * as ImagesB64 from "./images_b64.js";
 
-const NUM_OF_PARTICLES = 8000;
-const GLOBAL_ALPHA_TWEAK = 0.5;
-const CANVAS_SIZE = 512;
+const NUM_OF_PARTICLES = 7000;
+const GLOBAL_ALPHA_TWEAK = 1;
+const PIXEL_VELOCITY_MULT = 1;
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d");
@@ -37,8 +37,7 @@ function image_to_gray_scale(scanned_image) {
     const scanned_data = scanned_image.data;
 
     for (let i = 0; i < scanned_data.length; i += 4) {
-        const total =
-            scanned_data[i] + scanned_data[i + 1] + scanned_data[i + 2]; // total = red + green + blue
+        const total = scanned_data[i] + scanned_data[i + 1] + scanned_data[i + 2]; // total = red + green + blue
         const average_color_value = total / 3;
         scanned_data[i] = average_color_value;
         scanned_data[i + 1] = average_color_value;
@@ -58,10 +57,8 @@ function image_particles_overlay(scanned_image) {
         let row = [];
         for (let x = 0; x < canvas.width; x++) {
             const red = scanned_image.data[y * 4 * scanned_image.width + x * 4];
-            const green =
-                scanned_image.data[y * 4 * scanned_image.width + x * 4 + 1];
-            const blue =
-                scanned_image.data[y * 4 * scanned_image.width + x * 4 + 2];
+            const green = scanned_image.data[y * 4 * scanned_image.width + x * 4 + 1];
+            const blue = scanned_image.data[y * 4 * scanned_image.width + x * 4 + 2];
             const brightness = get_relative_brightness(red, green, blue);
             const rgb = `rgb(${red}, ${green}, ${blue})`;
             const cell = [brightness, rgb];
@@ -74,7 +71,7 @@ function image_particles_overlay(scanned_image) {
 
 function create_particles() {
     for (let i = 0; i < NUM_OF_PARTICLES; i++) {
-        particles.push(new Particle(canvas, ctx));
+        particles.push(new Particle(canvas, ctx, PIXEL_VELOCITY_MULT));
     }
 }
 
@@ -91,9 +88,5 @@ function animate_particles() {
 }
 
 function get_relative_brightness(red, green, blue) {
-    return (
-        Math.sqrt(
-            red * red * 0.299 + green * green * 0.587 + blue * blue * 0.114
-        ) / 100
-    );
+    return Math.sqrt(red * red * 0.299 + green * green * 0.587 + blue * blue * 0.114) / 100;
 }

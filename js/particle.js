@@ -1,5 +1,5 @@
 export class Particle {
-    constructor(canvas, ctx) {
+    constructor(canvas, ctx, velocity_mult = 1) {
         this.canvas = canvas;
         this.ctx = ctx;
         this.x = Math.random() * this.canvas.width;
@@ -7,7 +7,7 @@ export class Particle {
         this.abs_x = Math.floor(this.x);
         this.abs_y = Math.floor(this.y);
         this.speed = 0;
-        this.velocity = Math.random() * 0.5;
+        this.velocity = Math.random() * velocity_mult;
         this.size = Math.random() * 1.5 + 1;
     }
 
