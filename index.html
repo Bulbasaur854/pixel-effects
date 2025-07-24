@@ -7,10 +7,51 @@
         <link rel="stylesheet" href="./css/style.css" />
     </head>
     <body>
+        <div class="controls-container">
+            <p>Number of Pixels</p>
+            <div class="slider-container" id="pixel-number-slider">
+                <input
+                    type="range"
+                    min="100"
+                    max="10000"
+                    value="5000"
+                    class="slider"
+                />
+                <p class="slider-value">5000</p>
+            </div>
+            <p>Global Alpha</p>
+            <div class="slider-container" id="global-alpha-slider">
+                <input
+                    type="range"
+                    min="0.1"
+                    max="7"
+                    step="0.1"
+                    value="0.2"
+                    class="slider"
+                />
+                <p class="slider-value">0.2</p>
+            </div>
+            <p>Pixels Speed Mult</p>
+            <div class="slider-container" id="pixel-speed-slider">
+                <input
+                    type="range"
+                    min="0.1"
+                    max="5"
+                    step="0.1"
+                    value="0.2"
+                    class="slider"
+                />
+                <p class="slider-value">0.2</p>
+            </div>
+            <!-- <p>Number of Pixels</p>
+            <p>Opacity</p>
+            <p>Pixels Speed</p> -->
+        </div>
         <div class="canvas-container">
             <canvas id="effects-canvas"></canvas>
         </div>
 
+        <script src="./js/input.js"></script>
         <script type="module" src="./js/pixel_effects.js"></script>
     </body>
 </html>

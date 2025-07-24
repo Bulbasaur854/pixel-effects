@@ -7,7 +7,7 @@ import * as ImagesB64 from "./images_b64.js";
 
 const NUM_OF_PARTICLES = 7000;
 const GLOBAL_ALPHA_TWEAK = 0.2;
-const PIXEL_VELOCITY_MULT = 1.2;
+const PIXEL_VELOCITY_MULT = 0.2;
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d");
