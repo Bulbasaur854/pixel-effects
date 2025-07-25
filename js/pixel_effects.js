@@ -13,8 +13,8 @@ const ctx = canvas.getContext("2d");
 const image = new Image();
 image.src = ImagesB64.sunflower;
 image.onload = () => {
-    canvas.width = image.width;
-    canvas.height = image.height;
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
 }
 
 let particles = [];
@@ -33,8 +33,9 @@ document.getElementById("run-button").onclick = () => {
 function start_animation() {
     is_running = true;
     const { pixel_num, pixel_speed } = get_controls_values();
+    const { w, h, x, y } = get_image_scale_values();
     
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, x, y, w, h);
     const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -48,6 +49,21 @@ function start_animation() {
 function create_particles(pixel_num, pixel_speed) {
     for (let i = 0; i < pixel_num; i++) {
         particles.push(new Particle(canvas, ctx, pixel_speed));
+    }
+}
+
+function get_image_scale_values() {
+    const scale = Math.min(canvas.width / image.width, canvas.height / image.height);
+    const w = image.width * scale;
+    const h = image.height * scale;
+    const x = (canvas.width - w) / 2;
+    const y = (canvas.height - h) / 2;
+
+    return {
+        w: w,
+        h: h,
+        x: x,
+        y: y
     }
 }
 

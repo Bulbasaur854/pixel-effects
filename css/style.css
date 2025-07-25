@@ -5,6 +5,7 @@
     --clr-prm: rgb(83, 190, 167);
 
     --sld-hgt: 1rem;
+    --cnv-dim: 32rem;
 }
 
 * {
@@ -90,6 +91,6 @@ button {
 }
 
 #effects-canvas {
-    width: 45rem;
-    height: 45rem;
+    width: var(--cnv-dim);
+    height: var(--cnv-dim);
 }
