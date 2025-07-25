@@ -12,7 +12,6 @@ const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
 let particles = [];
 let canvas_grid = [];
-let is_running = true;
 let animation_id;
 
 document.getElementById("stop-button").onclick = () => {
@@ -32,7 +31,6 @@ function start_animation() {
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
 
-        is_running = true;
         const { pixel_num, pixel_speed } = get_controls_values();
         const { w, h, x, y } = get_image_scale_values(image);        
 
@@ -99,7 +97,6 @@ function get_relative_brightness(red, green, blue) {
 }
 
 function animate_particles() {
-    if (!is_running) { return; }
     ctx.globalAlpha = 0.05;
     ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -113,7 +110,6 @@ function animate_particles() {
 
 function stop_animation() {
     if (animation_id) { cancelAnimationFrame(animation_id); }
-    is_running = false;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles = [];
 }
