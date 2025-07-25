@@ -5,7 +5,7 @@
 
 import { Particle } from "./particle.js";
 import { get_controls_values } from "./input.js";
-import * as ImagesB64 from "./images_b64.js";
+import { images_list } from "./images_b64.js";
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
@@ -25,7 +25,7 @@ document.getElementById("run-button").onclick = () => {
 function start_animation() {
     const image = new Image();
 
-    image.src = ImagesB64.sunflower;
+    image.src = images_list.saitama;
     
     image.onload = () => {
         canvas.width = canvas.clientWidth;
