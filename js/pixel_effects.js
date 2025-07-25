@@ -10,13 +10,6 @@ import * as ImagesB64 from "./images_b64.js";
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
-const image = new Image();
-image.src = ImagesB64.sunflower;
-image.onload = () => {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-}
-
 let particles = [];
 let canvas_grid = [];
 let is_running = true;
@@ -31,19 +24,28 @@ document.getElementById("run-button").onclick = () => {
 };
 
 function start_animation() {
-    is_running = true;
-    const { pixel_num, pixel_speed } = get_controls_values();
-    const { w, h, x, y } = get_image_scale_values();
+    const image = new Image();
+
+    image.src = ImagesB64.sunflower;
     
-    ctx.drawImage(image, x, y, w, h);
-    const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    image.onload = () => {
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
 
-    create_particles(pixel_num, pixel_speed);
+        is_running = true;
+        const { pixel_num, pixel_speed } = get_controls_values();
+        const { w, h, x, y } = get_image_scale_values(image);        
 
-    image_particles_overlay(scanned_image);
+        ctx.drawImage(image, x, y, w, h);
+        const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    animate_particles();
+        create_particles(pixel_num, pixel_speed);
+
+        image_particles_overlay(scanned_image);
+
+        animate_particles();
+    }   
 }
 
 function create_particles(pixel_num, pixel_speed) {
@@ -52,7 +54,7 @@ function create_particles(pixel_num, pixel_speed) {
     }
 }
 
-function get_image_scale_values() {
+function get_image_scale_values(image) {
     const scale = Math.min(canvas.width / image.width, canvas.height / image.height);
     const w = image.width * scale;
     const h = image.height * scale;
