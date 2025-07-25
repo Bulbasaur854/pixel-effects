@@ -8,7 +8,7 @@ import { get_controls_values } from "./input.js";
 import * as ImagesB64 from "./images_b64.js";
 
 const canvas = document.getElementById("effects-canvas");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
 const image = new Image();
 image.src = ImagesB64.sunflower;
