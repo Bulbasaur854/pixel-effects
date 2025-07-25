@@ -6,37 +6,22 @@
         <title>Pixel Effects</title>
         <link rel="stylesheet" href="./css/style.css" />
     </head>
-    <body>
-        <div class="controls-container">
-            <p>Number of Pixels</p>
-            <div class="slider-container" id="pixel-number-slider">
-                <input
-                    type="range"
-                    min="100"
-                    max="10000"
-                    value="5000"
-                    class="slider"
-                />
-                <p class="slider-value">5000</p>
-            </div>
-            <p>Pixels Speed Mult</p>
-            <div class="slider-container" id="pixel-speed-slider">
-                <input
-                    type="range"
-                    min="0.1"
-                    max="2"
-                    step="0.1"
-                    value="0.2"
-                    class="slider"
-                />
-                <p class="slider-value">0.2</p>
-            </div>
+    <body>      
+        
+        <span id="pixel-number-text">5000</span>
+        <input type="range" min="100" max="10000" value="5000" class="slider" id="pixel-number-slider"/>
+        <span id="pixel-speed-text">0.2</span>
+        <input type="range" min="0.1" max="2" step="0.1" value="0.2" class="slider" id="pixel-speed-slider" />
+        
+        
+        <div class="buttons-container">
             <button type="button" id="run-button">RUN</button>
             <button type="button" id="stop-button">STOP</button>
         </div>
+
         <div class="canvas-container">
             <canvas id="effects-canvas"></canvas>
-        </div>
+        </div>        
 
         <script type="module" src="./js/input.js"></script>
         <script type="module" src="./js/pixel_effects.js"></script>

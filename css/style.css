@@ -14,41 +14,8 @@ body {
     font-family: monospace;
 }
 
-.controls-container {
+span {
     color: var(--clr-txt);
-    position: fixed;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    .slider-container {
-        display: flex;
-        gap: 1rem;
-
-        .slider-value {
-            width: 5ch;
-        }
-    }
-
-    button {
-        font-size: 0.8rem;
-        padding-block: 0.5rem;
-        cursor: pointer;
-        background-color: var(--clr-bcg);
-        color: var(--clr-txt);
-        border: 2px solid var(--clr-txt);
-        transition: all 0.5s ease;
-
-        &:hover {
-            background-color: var(--clr-txt);
-            color: var(--clr-bcg);
-        }
-
-        &:active {
-            background-color: #555555;
-        }
-    }
 }
 
 .canvas-container {
