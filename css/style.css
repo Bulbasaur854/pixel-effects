@@ -1,7 +1,6 @@
 :root {
     --clr-bcg: #000000;
     --clr-txt: #dddddd;
-    --clr-txt-2: #aaaaaa;
 }
 
 * {
@@ -26,15 +25,28 @@ body {
     .slider-container {
         display: flex;
         gap: 1rem;
+
+        .slider-value {
+            width: 5ch;
+        }
     }
 
     button {
+        font-size: 0.8rem;
         padding-block: 0.5rem;
         cursor: pointer;
-        border: none;
+        background-color: var(--clr-bcg);
+        color: var(--clr-txt);
+        border: 2px solid var(--clr-txt);
+        transition: all 0.5s ease;
 
         &:hover {
-            background-color: var(--clr-txt-2);
+            background-color: var(--clr-txt);
+            color: var(--clr-bcg);
+        }
+
+        &:active {
+            background-color: #555555;
         }
     }
 }

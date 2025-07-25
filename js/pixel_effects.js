@@ -2,6 +2,7 @@
 // https://www.youtube.com/watch?v=UoTxOVEecbI&list=WL&index=1&t=2600s&ab_channel=freeCodeCamp.org
 //
 // PNG images are taken from - https://www.stickpng.com/
+
 import { Particle } from "./particle.js";
 import { get_controls_values } from "./input.js";
 import * as ImagesB64 from "./images_b64.js";
@@ -48,13 +49,12 @@ function create_particles(pixel_num, pixel_speed) {
     for (let i = 0; i < pixel_num; i++) {
         particles.push(new Particle(canvas, ctx, pixel_speed));
     }
-    console.log(particles)
 }
 
+// map the scanned image data to an array of cells,
+// each cell holds its brightness and can be accessed by
+// using its x and y position as indexes
 function image_particles_overlay(scanned_image) {
-    // map the scanned image data to an array of cells,
-    // each cell holds its brightness and can be accessed by
-    // using its x and y position as indexes
     for (let y = 0; y < canvas.height; y++) {
         let row = [];
         for (let x = 0; x < canvas.width; x++) {
