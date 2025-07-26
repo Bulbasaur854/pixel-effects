@@ -54,6 +54,7 @@ export class Particle {
     
     check_y_pos() {
         if (this.y >= this.canvas.height) {
+            this.y = 0
             this.x = this.get_random_x_position();
         }
     }
