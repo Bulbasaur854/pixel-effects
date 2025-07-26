@@ -34,6 +34,10 @@ button {
     }
 }
 
+label, p {
+    font-size: 1rem;
+}
+
 .controls-container {
     position: fixed;
     width: 30%;
@@ -50,7 +54,6 @@ button {
     /* margin-top: 0.5rem; */
 
     .text-container {
-        font-size: 1rem;
         display: flex;
         justify-content: space-between;
         gap: 1rem;
@@ -76,6 +79,12 @@ button {
         width: var(--sld-hgt);
         height: var(--sld-hgt);
     }
+}
+
+.image-selector-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 .buttons-container {

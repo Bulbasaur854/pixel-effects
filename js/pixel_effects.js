@@ -4,7 +4,7 @@
 // PNG images are taken from - https://www.stickpng.com/
 
 import { Particle } from "./particle.js";
-import { get_controls_values } from "./input.js";
+import { get_controls_values, populate_image_options } from "./input.js";
 import { images_list } from "./images_b64.js";
 
 const canvas = document.getElementById("effects-canvas");
@@ -22,10 +22,13 @@ document.getElementById("run-button").onclick = () => {
     start_animation();
 };
 
+populate_image_options(images_list);
+start_animation();
+
 function start_animation() {
     const image = new Image();
 
-    image.src = images_list.saitama;
+    image.src = images_list.sunflower;
     
     image.onload = () => {
         canvas.width = canvas.clientWidth;
