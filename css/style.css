@@ -5,7 +5,7 @@
     --clr-prm: rgb(83, 190, 167);
 
     --sld-hgt: 1rem;
-    --cnv-dim: 32rem;
+    --cnv-dim: 40rem;
 }
 
 * {
@@ -93,21 +93,4 @@ button {
 #effects-canvas {
     width: var(--cnv-dim);
     height: var(--cnv-dim);
-}
-
-@media only screen and (max-width: 1000px) {
-    .controls-container {
-        position: static;
-        width: 100%;
-    }
-
-    .canvas-container {
-        height: auto;
-        padding-block: 4rem;
-    }
-
-    #effects-canvas {
-        width: 20rem;
-        height: 20rem;
-    }
 }
