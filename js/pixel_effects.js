@@ -1,7 +1,5 @@
 // This project is based on the guide of 'freeCodeCamp.org' YouTube channel
 // https://www.youtube.com/watch?v=UoTxOVEecbI&list=WL&index=1&t=2600s&ab_channel=freeCodeCamp.org
-//
-// PNG images are taken from - https://www.stickpng.com/
 
 import { Particle } from "./particle.js";
 import { get_controls_values, populate_image_options, get_selected_image } from "./input.js";
@@ -35,15 +33,15 @@ function start_animation() {
         canvas.height = canvas.clientHeight;
 
         const { pixel_num, pixel_speed } = get_controls_values();
-        const { w, h, x, y } = get_image_scale_values(image);        
+        const image_bounds = get_image_scale_values(image);        
 
-        ctx.drawImage(image, x, y, w, h);
+        ctx.drawImage(image, image_bounds.x, image_bounds.y, image_bounds.w, image_bounds.h);
         const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         canvas_grid = [];
 
-        create_particles(pixel_num, pixel_speed);
+        create_particles(pixel_num, pixel_speed, image_bounds);
 
         image_particles_overlay(scanned_image);
 
@@ -51,11 +49,10 @@ function start_animation() {
     }
 }
 
-function create_particles(pixel_num, pixel_speed) {
+function create_particles(pixel_num, pixel_speed, image_bounds) {
     particles = [];
-
     for (let i = 0; i < pixel_num; i++) {
-        particles.push(new Particle(canvas, ctx, pixel_speed));
+        particles.push(new Particle(canvas, ctx, pixel_speed, image_bounds));
     }
 }
 
@@ -82,10 +79,8 @@ function image_particles_overlay(scanned_image) {
         let row = [];
         for (let x = 0; x < canvas.width; x++) {
             const red = scanned_image.data[y * 4 * scanned_image.width + x * 4];
-            const green =
-                scanned_image.data[y * 4 * scanned_image.width + x * 4 + 1];
-            const blue =
-                scanned_image.data[y * 4 * scanned_image.width + x * 4 + 2];
+            const green = scanned_image.data[y * 4 * scanned_image.width + x * 4 + 1];
+            const blue = scanned_image.data[y * 4 * scanned_image.width + x * 4 + 2];
             const brightness = get_relative_brightness(red, green, blue);
             const rgb = `rgb(${red}, ${green}, ${blue})`;
             const cell = [brightness, rgb];
