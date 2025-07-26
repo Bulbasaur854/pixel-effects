@@ -4,8 +4,8 @@
 // PNG images are taken from - https://www.stickpng.com/
 
 import { Particle } from "./particle.js";
-import { get_controls_values, populate_image_options } from "./input.js";
-import { images_list } from "./images_b64.js";
+import { get_controls_values, populate_image_options, get_selected_image } from "./input.js";
+import { images_list_b64 } from "./images_b64.js";
 
 const canvas = document.getElementById("effects-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
@@ -22,14 +22,14 @@ document.getElementById("run-button").onclick = () => {
     start_animation();
 };
 
-populate_image_options(images_list);
+populate_image_options(images_list_b64);
 start_animation();
 
 function start_animation() {
     const image = new Image();
-
-    image.src = images_list.sunflower;
     
+    image.src = get_selected_image(images_list_b64);
+
     image.onload = () => {
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
@@ -41,15 +41,19 @@ function start_animation() {
         const scanned_image = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        canvas_grid = [];
+
         create_particles(pixel_num, pixel_speed);
 
         image_particles_overlay(scanned_image);
 
         animate_particles();
-    }   
+    }
 }
 
 function create_particles(pixel_num, pixel_speed) {
+    particles = [];
+
     for (let i = 0; i < pixel_num; i++) {
         particles.push(new Particle(canvas, ctx, pixel_speed));
     }
@@ -115,6 +119,7 @@ function stop_animation() {
     if (animation_id) { cancelAnimationFrame(animation_id); }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles = [];
+    canvas_grid = [];
 }
 
 // function image_to_gray_scale(scanned_image) {

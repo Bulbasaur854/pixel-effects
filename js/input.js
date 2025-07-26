@@ -14,14 +14,17 @@ pixel_speed_slider.oninput = () => {
     pixel_speed_text.innerHTML = pixel_speed_slider.value;
 }
 
-export function populate_image_options(images_list) {
-    for (const key in images_list) {
-        console.log("Adding image:", key);
+export function populate_image_options(images_list_b64) {
+    for (const key in images_list_b64) {
         const option = document.createElement("option");
         option.value = key;
         option.textContent = key.charAt(0).toUpperCase() + key.slice(1); // capitalize name for display
         image_selector.appendChild(option);
     }
+}
+
+export function get_selected_image(images_list_b64) {
+    return images_list_b64[image_selector.value];
 }
 
 export function get_controls_values() {
