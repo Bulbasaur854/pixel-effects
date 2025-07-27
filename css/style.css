@@ -2,9 +2,9 @@
     --clr-drk: #000000;
     --clr-lgt: #dddddd;
     --clr-lgt-opc: #dddddd50;
-    --clr-prm: rgb(83, 190, 167);
+    --clr-prm: cyan;
 
-    --sld-hgt: 1rem;
+    --sld-hgt: 1.4rem;
     --cnv-dim: 40rem;
 }
 
@@ -27,6 +27,7 @@ button {
     background-color: var(--clr-drk);
     color: var(--clr-lgt);
     transition: all 0.5s ease;
+    font-size: 1.2rem;
 
     &:hover {
         background-color: var(--clr-lgt);
@@ -35,7 +36,22 @@ button {
 }
 
 label, p {
+    font-size: 1.2rem;
+}
+
+select {
+    border: none;
+    background-color: var(--clr-lgt-opc);
+    color: var(--clr-lgt);
+    padding: 0.25rem;
+    opacity: 0.7;
+    transition: all 0.5s ease;
     font-size: 1rem;
+
+    .select-option {
+        background-color: gray;
+        font-size: 1rem;
+    }
 }
 
 .controls-container {

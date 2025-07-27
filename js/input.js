@@ -22,6 +22,7 @@ export function populate_image_options(images_list_b64) {
     images_names.sort();
     for (const name of images_names) {
         const option = document.createElement("option");
+        option.classList.add("select-option");
         option.value = name;
         option.textContent = name.charAt(0).toUpperCase() + name.slice(1); // capitalize name for display
         image_selector.appendChild(option);
