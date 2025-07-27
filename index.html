@@ -8,39 +8,41 @@
     </head>
     <body>      
 
-        <section class="controls-container">
-            
-            <div class="slider-container">
-                <div class="text-container">
-                    <label for="pixel-number-slider">Number of Pixels</label>
-                    <p id="pixel-number-text"></p>
+        <section class="main-container">
+            <div class="controls-container">
+                
+                <div class="slider-container">
+                    <div class="text-container">
+                        <label for="pixel-number-slider">Number of Pixels</label>
+                        <p id="pixel-number-text"></p>
+                    </div>
+                    <input type="range" min="100" max="10000" step="10" value="5000" class="slider" id="pixel-number-slider" />
                 </div>
-                <input type="range" min="100" max="10000" step="10" value="5000" class="slider" id="pixel-number-slider" />
-            </div>
-            <div class="slider-container">
-                <div class="text-container">
-                    <label for="pixel-speed-slider">Pixel Speed</label>
-                    <p id="pixel-speed-text"></p>
+                <div class="slider-container">
+                    <div class="text-container">
+                        <label for="pixel-speed-slider">Pixel Speed</label>
+                        <p id="pixel-speed-text"></p>
+                    </div>
+                    <input type="range" min="0.1" max="2" step="0.1" value="1" class="slider" id="pixel-speed-slider" />
                 </div>
-                <input type="range" min="0.1" max="2" step="0.1" value="1" class="slider" id="pixel-speed-slider" />
-            </div>
-
-            <div class="image-selector-container">
-                <label for="image-selector">Select Image</label>
-                <select name="image" id="image-selector"></select>
-            </div>
-
-            <div class="buttons-container">
-                <button type="button" id="run-button">RUN</button>
-                <button type="button" id="stop-button">STOP</button>
-            </div>
+    
+                <div class="image-selector-container">
+                    <label for="image-selector">Select Image</label>
+                    <select name="image" id="image-selector"></select>
+                </div>
+    
+                <div class="buttons-container">
+                    <button type="button" id="run-button">RUN</button>
+                    <button type="button" id="stop-button">STOP</button>
+                </div>
+                
+            </div>                
             
-        </section>                
-        
-
-        <div class="canvas-container">
-            <canvas id="effects-canvas"></canvas>
-        </div>        
+    
+            <div class="canvas-container">
+                <canvas id="effects-canvas"></canvas>
+            </div>        
+        </section>
 
         <script type="module" src="./js/input.js"></script>
         <script type="module" src="./js/pixel_effects.js"></script>
