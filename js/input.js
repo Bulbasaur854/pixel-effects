@@ -15,10 +15,15 @@ pixel_speed_slider.oninput = () => {
 }
 
 export function populate_image_options(images_list_b64) {
+    let images_names = [];
     for (const key in images_list_b64) {
+        images_names.push(key);
+    }
+    images_names.sort();
+    for (const name of images_names) {
         const option = document.createElement("option");
-        option.value = key;
-        option.textContent = key.charAt(0).toUpperCase() + key.slice(1); // capitalize name for display
+        option.value = name;
+        option.textContent = name.charAt(0).toUpperCase() + name.slice(1); // capitalize name for display
         image_selector.appendChild(option);
     }
 }
