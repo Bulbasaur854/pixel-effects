@@ -4,7 +4,7 @@ export class Particle {
         this.ctx = ctx;
         this.image_bounds = image_bounds
         this.x = this.get_random_x_position();
-        this.y = 0;
+        this.y = this.get_random_y_position();
         this.abs_x = Math.floor(this.x);
         this.abs_y = Math.floor(this.y);
         this.speed = 0;
@@ -40,6 +40,15 @@ export class Particle {
         // generate x position within image bounds if available, otherwise full canvas width
         if (this.image_bounds) {
             return this.image_bounds.x + Math.random() * this.image_bounds.w;
+        } else {
+            return Math.random() * this.canvas.width;
+        }
+    }
+
+    get_random_y_position() {
+        // generate y position within image bounds if available, otherwise full canvas width
+        if (this.image_bounds) {
+            return this.image_bounds.y + Math.random() * this.image_bounds.h;
         } else {
             return Math.random() * this.canvas.width;
         }
