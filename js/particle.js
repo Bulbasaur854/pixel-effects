@@ -54,7 +54,7 @@ export class Particle {
     
     check_y_pos() {
         if (this.y >= this.canvas.height) {
-            this.y = -10; // so pixels will not create line at the top of canvas
+            this.y = -3; // so pixels will not create line at the top of canvas
             this.x = this.get_random_x_position();
         }
     }

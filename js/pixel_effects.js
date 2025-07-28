@@ -2,7 +2,7 @@
 // https://www.youtube.com/watch?v=UoTxOVEecbI&list=WL&index=1&t=2600s&ab_channel=freeCodeCamp.org
 
 import { Particle } from "./particle.js";
-import { get_controls_values, populate_image_options, get_selected_image } from "./input.js";
+import * as input from "./input.js";
 import { images_list_b64 } from "./images_b64.js";
 
 const canvas = document.getElementById("effects-canvas");
@@ -14,25 +14,29 @@ let animation_id;
 
 document.getElementById("stop-button").onclick = () => {
     stop_animation();
+    input.remove_uploaded_image();
 };
 document.getElementById("run-button").onclick = () => {
     stop_animation();
     start_animation();
 };
 
-populate_image_options(images_list_b64);
+input.populate_image_options(images_list_b64);
 start_animation();
 
 function start_animation() {
     const image = new Image();
-    
-    image.src = get_selected_image(images_list_b64);
+    const uploaded_image = input.get_uploaded_image();
+    if (!uploaded_image)
+        image.src = input.get_selected_image(images_list_b64);
+    else 
+        image.src = uploaded_image;
 
     image.onload = () => {
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
 
-        const { pixel_num, pixel_speed } = get_controls_values();
+        const { pixel_num, pixel_speed } = input.get_controls_values();
         const image_bounds = get_image_scale_values(image);        
 
         ctx.drawImage(image, image_bounds.x, image_bounds.y, image_bounds.w, image_bounds.h);

@@ -20,13 +20,12 @@ body {
 }
 
 button {
-    flex: 1;
     padding-block: 0.5rem;
     border: 2px solid var(--clr-lgt-opc);
     background-color: var(--clr-drk);
     color: var(--clr-lgt);
     transition: all 0.5s ease;
-    font-size: 1.2rem;
+    font-size: 1rem;
 
     &:hover {
         background-color: var(--clr-lgt);
@@ -109,8 +108,11 @@ select {
 
 .buttons-container {
     display: flex;
-    justify-content: space-between;
     gap: 1rem;
+
+    button {
+        flex: 1;
+    }
 }
 
 .canvas-container {

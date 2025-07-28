@@ -3,6 +3,9 @@ const pixel_number_text = document.getElementById("pixel-number-text");
 const pixel_speed_slider = document.getElementById("pixel-speed-slider");
 const pixel_speed_text = document.getElementById("pixel-speed-text");
 const image_selector = document.getElementById("image-selector");
+const image_input = document.getElementById("image-upload");
+
+let uploaded_image_b64 = "";
 
 pixel_number_text.innerHTML = pixel_number_slider.value;
 pixel_speed_text.innerHTML = pixel_speed_slider.value;
@@ -13,6 +16,17 @@ pixel_number_slider.oninput = () => {
 pixel_speed_slider.oninput = () => {
     pixel_speed_text.innerHTML = pixel_speed_slider.value;
 }
+
+image_input.addEventListener("change", (e) => {
+    const file = image_input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            uploaded_image_b64 = reader.result;
+        }
+        reader.readAsDataURL(file);
+    }    
+})
 
 export function populate_image_options(images_list_b64) {
     let images_names = [];
@@ -31,6 +45,14 @@ export function populate_image_options(images_list_b64) {
 
 export function get_selected_image(images_list_b64) {
     return images_list_b64[image_selector.value];
+}
+
+export function get_uploaded_image() {
+    return uploaded_image_b64 ? uploaded_image_b64 : null;
+}
+
+export function remove_uploaded_image() {
+    image_input.value = "";
 }
 
 export function get_controls_values() {
