@@ -4,7 +4,7 @@ export class Particle {
         this.ctx = ctx;
         this.image_bounds = image_bounds
         this.x = this.get_random_x_position();
-        this.y = this.get_random_y_position();
+        this.y = 0;
         this.abs_x = Math.floor(this.x);
         this.abs_y = Math.floor(this.y);
         this.speed = 0;
