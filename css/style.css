@@ -19,22 +19,24 @@ body {
     font-family: monospace;
 }
 
+label, 
+p {
+    font-size: 1.2rem;
+}
+
 button {
-    padding-block: 0.5rem;
+    padding: 0.5rem 1rem;
     border: 2px solid var(--clr-lgt-opc);
     background-color: var(--clr-drk);
     color: var(--clr-lgt);
     transition: all 0.5s ease;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
 
     &:hover {
         background-color: var(--clr-lgt);
         color: var(--clr-drk);
     }
-}
-
-label, p {
-    font-size: 1.2rem;
 }
 
 select {
@@ -45,6 +47,7 @@ select {
     opacity: 0.7;
     transition: all 0.5s ease;
     font-size: 1rem;
+    font-family: monospace;
 
     .select-option {
         background-color: gray;
@@ -71,12 +74,12 @@ select {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+}
 
-    .text-container {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-    }
+.text-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
 .slider {
@@ -104,15 +107,32 @@ select {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    font-size: 2rem;  
+}
+
+.image-upload-container {
+    label {
+        font-size: 1.2rem;
+        cursor: pointer;
+        text-decoration: underline;
+        color: var(--clr-prm);
+        opacity: 0.7;
+        transition: all 0.5s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    span {
+        font-size: 1rem;
+    }
 }
 
 .buttons-container {
     display: flex;
+    justify-content: flex-end;
     gap: 1rem;
-
-    button {
-        flex: 1;
-    }
 }
 
 .canvas-container {

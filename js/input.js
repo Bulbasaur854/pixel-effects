@@ -4,6 +4,7 @@ const pixel_speed_slider = document.getElementById("pixel-speed-slider");
 const pixel_speed_text = document.getElementById("pixel-speed-text");
 const image_selector = document.getElementById("image-selector");
 const image_input = document.getElementById("image-upload");
+const image_input_name = document.getElementById("file-name");
 
 let uploaded_image_b64 = "";
 
@@ -20,11 +21,15 @@ pixel_speed_slider.oninput = () => {
 image_input.addEventListener("change", (e) => {
     const file = image_input.files[0];
     if (file) {
+        image_input_name.textContent = `- ${image_input.files[0].name}`;
         const reader = new FileReader();
         reader.onload = (e) => {
             uploaded_image_b64 = reader.result;
         }
         reader.readAsDataURL(file);
+    }
+    else {
+        image_input_name.textContent = "No file selected";
     }    
 })
 
@@ -53,6 +58,8 @@ export function get_uploaded_image() {
 
 export function remove_uploaded_image() {
     image_input.value = "";
+    image_input_name.textContent = "- No file selected";
+    uploaded_image_b64 = null;
 }
 
 export function get_controls_values() {

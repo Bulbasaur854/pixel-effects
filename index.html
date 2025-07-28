@@ -31,14 +31,18 @@
                     <select name="image" id="image-selector"></select>
                 </div>
 
+                <p>- Or -</p>
+                
                 <div class="image-upload-container">
                     <label for="image-upload">Upload Image</label>
-                    <input type="file" id="image-upload" accept="image/*">
+                    <input type="file" id="image-upload" accept="image/*" hidden>                    
+                    <span id="file-name">- No file selected</span>
                 </div>
     
+
                 <div class="buttons-container">
-                    <button type="button" id="run-button">RUN</button>
-                    <button type="button" id="stop-button">STOP</button>
+                    <button type="button" id="run-button">Run</button>
+                    <button type="button" id="stop-button">Stop</button>
                 </div>
                 
             </div>                
