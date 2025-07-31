@@ -9,6 +9,6 @@ Lightweight canvas effect that takes an image and transforms it into animated pi
 ## Features
 
 -  Control amount of pixels
--  Control speed of pixels
+-  Control pixels speed
 -  Selection of preloaded images to experiment with
 -  Upload your own image
